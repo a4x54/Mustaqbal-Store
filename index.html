@@ -2,7 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2c6fbb">
+    <meta name="description" content="مكتب المستقبل - متجرك الأول للهواتف والإكسسوارات وخدمات الرصيد">
     <title>مكتب المستقبل - هواتف، رصيد، إكسسوارات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -21,6 +23,28 @@
             --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
             --border-radius: 12px;
+            --safe-bottom: env(safe-area-inset-bottom);
+        }
+
+        /* تحسينات للمس واللمس */
+        @media (hover: none) {
+            * {
+                cursor: default !important;
+            }
+
+            a, button, .product-card, .service-card {
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+        }
+
+        /* تحسين التحميل */
+        img {
+            loading: lazy;
+        }
+
+        .product-image img, .service-icon {
+            will-change: transform;
         }
 
         * {
@@ -94,7 +118,7 @@
         }
 
         .brand-name {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: var(--white);
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -102,6 +126,63 @@
 
         .brand-name span {
             color: var(--accent);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+            margin-left: 10px;
+        }
+
+        .search-input {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            border-radius: 25px;
+            padding: 8px 15px;
+            padding-right: 35px;
+            color: var(--white);
+            font-size: 0.9rem;
+            width: 180px;
+            transition: var(--transition);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .search-input:focus {
+            background: rgba(255,255,255,0.2);
+            outline: none;
+            width: 200px;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .search-input {
+                width: 120px;
+            }
+            .search-input:focus {
+                width: 140px;
+            }
+            .brand-name {
+                font-size: 1.2rem;
+            }
         }
 
         .cart-icon {
@@ -207,6 +288,22 @@
             margin-bottom: 30px;
             opacity: 0.9;
             font-weight: 300;
+        }
+
+        @media (max-width: 480px) {
+            .slide-text h1 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .slide-text p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            .slide-image {
+                max-width: 280px;
+            }
         }
 
         .btn {
@@ -338,11 +435,58 @@
         }
 
         /* المنتجات */
+        .product-categories {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 0 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+            padding-bottom: 5px;
+        }
+
+        .product-categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            background: var(--white);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            box-shadow: var(--shadow);
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .category-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
             padding: 0 10px;
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
         }
 
         .product-card {
@@ -644,8 +788,8 @@
         .cart-sidebar {
             position: fixed;
             top: 0;
-            right: -400px;
-            width: 90%;
+            right: -100%;
+            width: 100%;
             max-width: 400px;
             height: 100%;
             background-color: var(--white);
@@ -654,6 +798,18 @@
             transition: var(--transition);
             display: flex;
             flex-direction: column;
+            padding-bottom: calc(var(--safe-bottom) + 1rem);
+            overscroll-behavior: contain;
+        }
+
+        @media (max-width: 480px) {
+            .cart-sidebar {
+                max-width: 100%;
+            }
+
+            .cart-header {
+                padding-top: calc(env(safe-area-inset-top) + 1rem);
+            }
         }
 
         .cart-sidebar.active {
@@ -952,8 +1108,17 @@
             z-index: 1000;
             display: flex;
             justify-content: space-around;
-            padding: 12px 0;
+            padding: 10px 0;
             border-top: 1px solid var(--light-gray);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding-bottom: 70px;
+            }
         }
 
         .nav-item {
