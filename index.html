@@ -58,8 +58,8 @@
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             color: var(--dark);
             line-height: 1.7;
-            padding-top: 90px;
-            padding-bottom: 100px;
+            padding-top: 62px;
+            padding-bottom: 70px; /* زيادة padding-bottom لاستيعاب mobile-nav */
             min-height: 100vh;
         }
 
@@ -79,7 +79,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 15px 0;
+            padding: 12px 0; /* تقليل الارتفاع قليلاً */
             transition: var(--transition);
         }
 
@@ -88,7 +88,7 @@
             justify-content: space-between;
             align-items: center;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: -5px auto;
             padding: 0 20px;
             flex-wrap: wrap;
         }
@@ -101,8 +101,8 @@
         }
 
         .brand-logo {
-            width: 50px;
-            height: 50px;
+            width: 45px; /* تصغير الحجم قليلاً */
+            height: 45px;
             background-color: var(--white);
             border-radius: 50%;
             display: flex;
@@ -120,7 +120,7 @@
         }
 
         .brand-name {
-            font-size: 1.4rem;
+            font-size: 1.3rem; /* تصغير الحجم قليلاً */
             font-weight: 800;
             color: var(--white);
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -133,17 +133,17 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px; /* تقليل المسافة بين العناصر */
         }
 
         .search-toggle {
             background: none;
             border: none;
             color: var(--white);
-            font-size: 1.3rem;
+            font-size: 1.2rem; /* تصغير الحجم قليلاً */
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 38px; /* تصغير الحجم قليلاً */
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -158,7 +158,7 @@
         .search-container {
             width: 100%;
             display: none;
-            padding: 15px 20px;
+            padding: 12px 20px; /* تقليل الارتفاع قليلاً */
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
             position: absolute;
             top: 100%;
@@ -178,7 +178,7 @@
 
         .search-input {
             width: 100%;
-            padding: 12px 20px;
+            padding: 12px 20px; /* تعديل padding */
             border: none;
             border-radius: 30px;
             background-color: rgba(255, 255, 255, 0.9);
@@ -200,12 +200,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: 45px; /* تصغير الحجم قليلاً */
+            height: 45px;
             border-radius: 50%;
             background-color: rgba(255,255,255,0.2);
             color: var(--white);
-            font-size: 1.3rem;
+            font-size: 1.2rem; /* تصغير الحجم قليلاً */
             cursor: pointer;
             transition: var(--transition);
         }
@@ -221,9 +221,9 @@
             left: -5px;
             background-color: var(--secondary);
             color: var(--white);
-            font-size: 0.8rem;
-            width: 24px;
-            height: 24px;
+            font-size: 0.75rem; /* تصغير الحجم قليلاً */
+            width: 22px; /* تصغير الحجم قليلاً */
+            height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -235,94 +235,61 @@
         /* التنقل السلس */
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 90px;
+            scroll-padding-top: 80px; /* تعديل ليتناسب مع ارتفاع الهيدر الجديد */
         }
 
-        /* الشريحة الرئيسية - تصميم جديد */
+        /* تصميم جديد للشريحة الرئيسية */
         .hero-slider {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
-            padding: 40px 0;
-            margin-bottom: 40px;
-            border-radius: 0 0 30px 30px;
+            padding: 70px  0; /* تعديل الارتفاع */
+            margin: 10px; /* تقليل المسافة السفلية */
+            border-radius: 40px;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero-slider::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-        }
-
-        .hero-slider::after {
-            content: '';
-            position: absolute;
-            bottom: -80px;
-            left: -80px;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-        }
-
-        .slide-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
+        }
+
+        .hero-content {
             position: relative;
             z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .slide-text {
-            margin-bottom: 30px;
-            padding: 0 15px;
-            max-width: 700px;
-        }
-
-        .slide-text h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        .hero-title {
+            font-size: 2.5rem; /* تعديل الحجم */
+            margin-bottom: 15px; /* تقليل المسافة */
             line-height: 1.3;
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
             background: linear-gradient(45deg, var(--white), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 800;
         }
 
-        .slide-text p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+        .hero-subtitle {
+            font-size: 1.1rem; /* تعديل الحجم */
+            margin-bottom: 25px; /* تقليل المسافة */
             opacity: 0.9;
             font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        @media (max-width: 480px) {
-            .slide-text h1 {
-                font-size: 2rem;
-                margin-bottom: 15px;
-            }
-
-            .slide-text p {
-                font-size: 1rem;
-                margin-bottom: 20px;
-            }
-
-            .slide-image {
-                max-width: 280px;
-            }
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px; /* تقليل المسافة بين الأزرار */
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-block;
-            padding: 14px 35px;
+            padding: 12px 28px; /* تعديل الحجم */
             background: linear-gradient(135deg, var(--secondary) 0%, #ff8c5a 100%);
             color: var(--white);
             text-decoration: none;
@@ -331,8 +298,8 @@
             transition: var(--transition);
             border: none;
             cursor: pointer;
-            font-size: 1.1rem;
-            margin: 8px;
+            font-size: 1rem; /* تعديل الحجم */
+            margin: 5px; /* تقليل المسافة */
             box-shadow: 0 5px 15px rgba(255,107,53,0.3);
             position: relative;
             overflow: hidden;
@@ -354,7 +321,7 @@
         }
 
         .btn:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px); /* تقليل تأثير الرفعة */
             box-shadow: 0 8px 20px rgba(255,107,53,0.4);
         }
 
@@ -369,50 +336,25 @@
             color: var(--primary);
         }
 
-        .slide-image {
-            max-width: 400px;
-            margin: 0 auto;
-            position: relative;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .slide-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            transform: perspective(1000px) rotateY(-10deg);
-            transition: transform 0.5s ease;
-        }
-
-        .slide-image img:hover {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
         /* أقسام الموقع */
         .section {
-            padding: 40px 0;
-            scroll-margin-top: 100px;
+            padding: 30px 0; /* تقليل المسافة */
+            scroll-margin-top: 90px;
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px; /* تقليل المسافة */
             padding: 0 15px;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 1.8rem; /* تعديل الحجم */
             color: var(--dark);
             position: relative;
-            padding-bottom: 12px;
+            padding-bottom: 10px; /* تقليل المسافة */
         }
 
         .section-title::after {
@@ -420,8 +362,8 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 60px;
-            height: 4px;
+            width: 50px; /* تقليل الطول */
+            height: 3px; /* تقليل السمك */
             background: linear-gradient(90deg, var(--secondary), var(--accent));
             border-radius: 2px;
         }
@@ -433,8 +375,8 @@
             text-decoration: none;
             font-weight: 700;
             transition: var(--transition);
-            font-size: 1rem;
-            padding: 8px 15px;
+            font-size: 0.9rem; /* تعديل الحجم */
+            padding: 6px 12px; /* تعديل الحجم */
             border-radius: 30px;
             background-color: var(--light-gray);
         }
@@ -446,7 +388,7 @@
         }
 
         .view-all i {
-            margin-left: 8px;
+            margin-left: 6px; /* تقليل المسافة */
             transition: var(--transition);
         }
 
@@ -458,9 +400,9 @@
         .categories-tabs {
             display: flex;
             overflow-x: auto;
-            gap: 10px;
-            padding: 15px 10px;
-            margin-bottom: 20px;
+            gap: 8px; /* تقليل المسافة */
+            padding: 12px 10px; /* تعديل المسافة */
+            margin-bottom: 15px; /* تقليل المسافة */
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
@@ -471,7 +413,7 @@
 
         .category-tab {
             flex: 0 0 auto;
-            padding: 10px 20px;
+            padding: 8px 16px; /* تعديل الحجم */
             background-color: var(--white);
             border-radius: 30px;
             font-weight: 700;
@@ -480,6 +422,7 @@
             box-shadow: var(--shadow);
             border: 2px solid transparent;
             white-space: nowrap;
+            font-size: 0.9rem; /* تعديل الحجم */
         }
 
         .category-tab.active {
@@ -490,14 +433,14 @@
 
         .category-tab:hover:not(.active) {
             border-color: var(--primary);
-            transform: translateY(-3px);
+            transform: translateY(-2px); /* تقليل تأثير الرفعة */
         }
 
         /* المنتجات */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            gap: 12px; /* تقليل المسافة */
             padding: 0 10px;
         }
 
@@ -519,22 +462,22 @@
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px); /* تقليل تأثير الرفعة */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* تقليل الظل */
         }
 
         .product-badge {
             position: absolute;
-            top: 12px;
-            left: 12px;
+            top: 10px; /* تقليل المسافة */
+            left: 10px;
             background: linear-gradient(135deg, var(--secondary) 0%, #ff8c5a 100%);
             color: var(--white);
-            padding: 6px 14px;
+            padding: 5px 10px; /* تعديل الحجم */
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem; /* تعديل الحجم */
             font-weight: 700;
             z-index: 2;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* تقليل الظل */
         }
 
         .offer-badge {
@@ -542,7 +485,7 @@
         }
 
         .product-image {
-            height: 160px;
+            height: 140px; /* تقليل الارتفاع */
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -562,33 +505,33 @@
         }
 
         .product-image img {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 85%; /* تقليل الحجم قليلاً */
+            max-height: 85%;
             object-fit: contain;
             transition: var(--transition);
         }
 
         .product-card:hover .product-image img {
-            transform: scale(1.08);
+            transform: scale(1.05); /* تقليل تأثير التكبير */
         }
 
         .product-info {
-            padding: 15px;
+            padding: 12px; /* تقليل المسافة */
         }
 
         .product-category {
             color: var(--primary);
-            font-size: 0.8rem;
-            margin-bottom: 6px;
+            font-size: 0.75rem; /* تعديل الحجم */
+            margin-bottom: 5px; /* تقليل المسافة */
             font-weight: 600;
         }
 
         .product-title {
-            font-size: 1rem;
+            font-size: 0.9rem; /* تعديل الحجم */
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* تقليل المسافة */
             color: var(--dark);
-            height: 44px;
+            height: 40px; /* تقليل الارتفاع */
             overflow: hidden;
         }
 
@@ -600,20 +543,20 @@
 
         .price {
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1rem; /* تعديل الحجم */
             color: var(--secondary);
         }
 
         .original-price {
             text-decoration: line-through;
             color: var(--gray);
-            font-size: 0.85rem;
-            margin-left: 5px;
+            font-size: 0.8rem; /* تعديل الحجم */
+            margin-left: 4px; /* تقليل المسافة */
         }
 
         .add-to-cart {
-            width: 36px;
-            height: 36px;
+            width: 32px; /* تصغير الحجم */
+            height: 32px;
             border-radius: 50%;
             background-color: var(--light-gray);
             color: var(--dark);
@@ -622,7 +565,7 @@
             justify-content: center;
             transition: var(--transition);
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem; /* تعديل الحجم */
         }
 
         .add-to-cart:hover {
@@ -634,15 +577,15 @@
         /* الخدمات */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* تصغير الحجم */
+            gap: 15px; /* تقليل المسافة */
             padding: 0 10px;
         }
 
         .service-card {
             background-color: var(--white);
             border-radius: var(--border-radius);
-            padding: 25px 15px;
+            padding: 20px 12px; /* تعديل المسافة */
             box-shadow: var(--shadow);
             transition: var(--transition);
             text-align: center;
@@ -670,22 +613,22 @@
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px); /* تقليل تأثير الرفعة */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* تقليل الظل */
             border-top-color: var(--secondary);
         }
 
         .service-icon {
-            width: 60px;
-            height: 60px;
+            width: 50px; /* تصغير الحجم */
+            height: 50px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 1.5rem;
+            margin: 0 auto 12px; /* تقليل المسافة */
+            font-size: 1.3rem; /* تعديل الحجم */
             position: relative;
             z-index: 2;
             transition: var(--transition);
@@ -693,21 +636,21 @@
 
         .service-card:hover .service-icon {
             background: linear-gradient(135deg, var(--secondary) 0%, #ff8c5a 100%);
-            transform: scale(1.1);
+            transform: scale(1.05); /* تقليل تأثير التكبير */
         }
 
         .service-title {
-            font-size: 1.1rem;
+            font-size: 1rem; /* تعديل الحجم */
             color: var(--dark);
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* تقليل المسافة */
             position: relative;
             z-index: 2;
         }
 
         .service-description {
             color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
+            font-size: 0.85rem; /* تعديل الحجم */
+            margin-bottom: 12px; /* تقليل المسافة */
             position: relative;
             z-index: 2;
         }
@@ -716,34 +659,34 @@
         .service-detail {
             background-color: var(--white);
             border-radius: var(--border-radius);
-            margin: 20px 0;
+            margin: 15px 0; /* تقليل المسافة */
             box-shadow: var(--shadow);
-            padding: 30px;
+            padding: 25px; /* تقليل المسافة */
             display: none;
             border: 1px solid #eee;
         }
 
         .service-detail.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease; /* تقليل مدة التحريك */
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); } /* تقليل المسافة */
             to { opacity: 1; transform: translateY(0); }
         }
 
         .offers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* تصغير الحجم */
+            gap: 20px; /* تقليل المسافة */
+            margin-top: 20px; /* تقليل المسافة */
         }
 
         .offer-card {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border-radius: var(--border-radius);
-            padding: 25px;
+            padding: 20px; /* تقليل المسافة */
             text-align: center;
             transition: var(--transition);
             border: 2px solid transparent;
@@ -762,22 +705,22 @@
         }
 
         .offer-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+            transform: translateY(-5px); /* تقليل تأثير الرفعة */
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1); /* تقليل الظل */
             border-color: var(--primary);
         }
 
         .offer-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem; /* تعديل الحجم */
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 12px; /* تقليل المسافة */
         }
 
         .offer-price {
-            font-size: 1.8rem;
+            font-size: 1.6rem; /* تعديل الحجم */
             color: var(--secondary);
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* تقليل المسافة */
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
@@ -787,24 +730,25 @@
             justify-content: center;
             background-color: #25D366;
             color: white;
-            padding: 12px 25px;
+            padding: 10px 20px; /* تعديل الحجم */
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             transition: var(--transition);
-            margin-top: 15px;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            margin-top: 12px; /* تقليل المسافة */
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); /* تقليل الظل */
+            font-size: 0.9rem; /* تعديل الحجم */
         }
 
         .whatsapp-btn:hover {
             background-color: #128C7E;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(18, 140, 126, 0.4);
+            transform: translateY(-2px); /* تقليل تأثير الرفعة */
+            box-shadow: 0 6px 15px rgba(18, 140, 126, 0.4); /* تقليل الظل */
         }
 
         .whatsapp-btn i {
-            margin-left: 10px;
-            font-size: 1.2rem;
+            margin-left: 8px; /* تقليل المسافة */
+            font-size: 1.1rem; /* تعديل الحجم */
         }
 
         /* سلة التسوق */
@@ -813,10 +757,10 @@
             top: 0;
             right: -100%;
             width: 100%;
-            max-width: 400px;
+            max-width: 380px; /* تصغير الحجم قليلاً */
             height: 100%;
             background-color: var(--white);
-            box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.12); /* تقليل الظل */
             z-index: 2000;
             transition: var(--transition);
             display: flex;
@@ -843,13 +787,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 18px 20px; /* تقليل المسافة */
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
         }
 
         .cart-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem; /* تعديل الحجم */
             font-weight: 700;
         }
 
@@ -857,10 +801,10 @@
             background: none;
             border: none;
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 1.4rem; /* تعديل الحجم */
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 38px; /* تصغير الحجم */
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -875,23 +819,23 @@
         .cart-items {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 18px; /* تقليل المسافة */
         }
 
         .cart-item {
             display: flex;
             align-items: center;
-            padding: 15px 0;
+            padding: 12px 0; /* تقليل المسافة */
             border-bottom: 1px solid var(--light-gray);
         }
 
         .cart-item-image {
-            width: 70px;
-            height: 70px;
+            width: 65px; /* تصغير الحجم */
+            height: 65px;
             border-radius: 10px;
             overflow: hidden;
             background-color: var(--light-gray);
-            margin-left: 15px;
+            margin-left: 12px; /* تقليل المسافة */
             flex-shrink: 0;
         }
 
@@ -907,13 +851,14 @@
 
         .cart-item-title {
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 4px; /* تقليل المسافة */
+            font-size: 0.95rem; /* تعديل الحجم */
         }
 
         .cart-item-price {
             color: var(--secondary);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem; /* تعديل الحجم */
         }
 
         .cart-item-remove {
@@ -921,9 +866,9 @@
             border: none;
             color: var(--gray);
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* تعديل الحجم */
             transition: var(--transition);
-            padding: 5px;
+            padding: 4px; /* تقليل المسافة */
         }
 
         .cart-item-remove:hover {
@@ -932,7 +877,7 @@
         }
 
         .cart-footer {
-            padding: 20px;
+            padding: 18px; /* تقليل المسافة */
             background-color: var(--light);
             border-top: 1px solid var(--light-gray);
         }
@@ -940,9 +885,9 @@
         .cart-total {
             display: flex;
             justify-content: space-between;
-            font-size: 1.3rem;
+            font-size: 1.2rem; /* تعديل الحجم */
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* تقليل المسافة */
             color: var(--dark);
         }
 
@@ -955,33 +900,33 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 15px;
+            padding: 13px; /* تقليل المسافة */
             background: linear-gradient(135deg, var(--accent) 0%, #2a9d8f 100%);
             color: var(--white);
             border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem; /* تعديل الحجم */
             font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+            box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3); /* تقليل الظل */
         }
 
         .checkout-btn i {
-            margin-left: 10px;
+            margin-left: 8px; /* تقليل المسافة */
         }
 
         .checkout-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(78, 205, 196, 0.4);
+            transform: translateY(-2px); /* تقليل تأثير الرفعة */
+            box-shadow: 0 6px 15px rgba(78, 205, 196, 0.4); /* تقليل الظل */
         }
 
         /* الفوتر */
         footer {
             background: linear-gradient(135deg, var(--dark) 0%, #1a1f25 100%);
             color: var(--white);
-            padding: 50px 0 30px;
-            margin-top: 50px;
+            padding: 40px 0 25px; /* تقليل المسافة */
+            margin-top: 40px; /* تقليل المسافة */
             border-radius: 30px 30px 0 0;
             position: relative;
         }
@@ -999,9 +944,9 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* تصغير الحجم */
+            gap: 25px; /* تقليل المسافة */
+            margin-bottom: 35px; /* تقليل المسافة */
             padding: 0 20px;
         }
 
@@ -1013,9 +958,9 @@
         .footer-logo {
             display: flex;
             align-items: center;
-            font-size: 1.8rem;
+            font-size: 1.6rem; /* تعديل الحجم */
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* تقليل المسافة */
             color: var(--white);
             text-decoration: none;
         }
@@ -1026,18 +971,18 @@
 
         .footer-about p {
             color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
+            margin-bottom: 15px; /* تقليل المسافة */
+            font-size: 0.9rem; /* تعديل الحجم */
         }
 
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 12px; /* تقليل المسافة */
         }
 
         .social-link {
-            width: 42px;
-            height: 42px;
+            width: 38px; /* تصغير الحجم */
+            height: 38px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.1);
             display: flex;
@@ -1045,19 +990,19 @@
             justify-content: center;
             color: var(--white);
             transition: var(--transition);
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* تعديل الحجم */
         }
 
         .social-link:hover {
             background-color: var(--accent);
-            transform: translateY(-5px);
+            transform: translateY(-3px); /* تقليل تأثير الرفعة */
         }
 
         .footer-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem; /* تعديل الحجم */
+            margin-bottom: 15px; /* تقليل المسافة */
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 8px; /* تقليل المسافة */
         }
 
         .footer-title::after {
@@ -1065,7 +1010,7 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 50px;
+            width: 45px; /* تقليل الطول */
             height: 3px;
             background: linear-gradient(90deg, var(--accent), var(--secondary));
             border-radius: 2px;
@@ -1076,7 +1021,7 @@
         }
 
         .footer-links li {
-            margin-bottom: 15px;
+            margin-bottom: 12px; /* تقليل المسافة */
         }
 
         .footer-links a {
@@ -1085,63 +1030,59 @@
             transition: var(--transition);
             display: flex;
             align-items: center;
+            font-size: 0.9rem; /* تعديل الحجم */
         }
 
         .footer-links a:hover {
             color: var(--accent);
-            transform: translateX(5px);
+            transform: translateX(4px); /* تقليل المسافة */
         }
 
         .footer-links a i {
-            margin-left: 10px;
-            font-size: 0.9rem;
+            margin-left: 8px; /* تقليل المسافة */
+            font-size: 0.85rem; /* تعديل الحجم */
         }
 
         .footer-contact li {
             display: flex;
-            margin-bottom: 18px;
-            font-size: 0.95rem;
+            margin-bottom: 15px; /* تقليل المسافة */
+            font-size: 0.9rem; /* تعديل الحجم */
             align-items: flex-start;
         }
 
         .footer-contact i {
             color: var(--accent);
-            margin-left: 12px;
-            font-size: 1.2rem;
-            min-width: 24px;
-            margin-top: 3px;
+            margin-left: 10px; /* تقليل المسافة */
+            font-size: 1.1rem; /* تعديل الحجم */
+            min-width: 22px; /* تصغير الحجم */
+            margin-top: 2px; /* تقليل المسافة */
         }
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 25px; /* تقليل المسافة */
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* تعديل الحجم */
         }
 
-        /* التنقل السفلي للجوال */
+        /* التنقل السفلي للجوال - محسّن */
         .mobile-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             background-color: var(--white);
-            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.08); /* تقليل الظل */
             z-index: 1000;
             display: flex;
             justify-content: space-around;
-            padding: 10px 0;
+            padding: 5px 0; /* تعديل المسافة */
             border-top: 1px solid var(--light-gray);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.95);
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding-bottom: 70px;
-            }
+            background-color: rgba(255, 255, 255, 0.98); /* زيادة الشفافية قليلاً */
+            height: 60px; /* تحديد ارتفاع ثابت */
         }
 
         .nav-item {
@@ -1150,29 +1091,30 @@
             align-items: center;
             text-decoration: none;
             color: var(--gray);
-            font-size: 0.85rem;
+            font-size: 0.8rem; /* تعديل الحجم */
             transition: var(--transition);
-            padding: 8px 12px;
-            border-radius: 15px;
+            padding: 6px 10px; /* تعديل المسافة */
+            border-radius: 12px; /* تقليل التدوير */
             flex: 1;
-            max-width: 90px;
+            max-width: 80px; /* تصغير الحجم */
+            justify-content: center;
         }
 
         .nav-item.active, .nav-item:hover {
             color: var(--primary);
-            background-color: rgba(44, 111, 187, 0.1);
-            transform: translateY(-5px);
+            background-color: rgba(44, 111, 187, 0.08); /* تقليل الشفافية */
+            transform: translateY(-3px); /* تقليل تأثير الرفعة */
         }
 
         .nav-item i {
-            font-size: 1.4rem;
-            margin-bottom: 5px;
+            font-size: 1.2rem; /* تعديل الحجم */
+            margin-bottom: 3px; /* تقليل المسافة */
             transition: var(--transition);
         }
 
         .nav-item.active i, .nav-item:hover i {
             color: var(--secondary);
-            transform: scale(1.1);
+            transform: scale(1.05); /* تقليل تأثير التكبير */
         }
 
         /* التجاوبية - شاشات متوسطة وكبيرة */
@@ -1181,52 +1123,34 @@
                 display: none;
             }
             
-            .hero-slider {
-                padding: 60px 0;
+            .hero-title {
+                font-size: 3rem; /* تعديل الحجم */
             }
             
-            .slide-content {
-                flex-direction: row;
-                text-align: right;
-                align-items: center;
-            }
-            
-            .slide-text {
-                flex: 1;
-                padding: 0 40px;
-                margin-bottom: 0;
-                text-align: right;
-            }
-            
-            .slide-text h1 {
-                font-size: 3rem;
-            }
-            
-            .slide-image {
-                flex: 1;
-                max-width: 450px;
+            .hero-subtitle {
+                font-size: 1.2rem; /* تعديل الحجم */
             }
             
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* تصغير الحجم */
             }
             
             .services-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* تصغير الحجم */
             }
             
             .offers-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* تصغير الحجم */
             }
         }
 
         @media (min-width: 992px) {
-            .slide-text h1 {
-                font-size: 3.2rem;
+            .hero-title {
+                font-size: 3.5rem; /* تعديل الحجم */
             }
             
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* تصغير الحجم */
             }
             
             .services-grid {
@@ -1242,29 +1166,30 @@
         .guide-section {
             background-color: var(--light);
             border-radius: var(--border-radius);
-            padding: 25px;
-            margin: 30px 0;
+            padding: 20px; /* تقليل المسافة */
+            margin: 25px 0; /* تقليل المسافة */
             box-shadow: var(--shadow);
             border-left: 4px solid var(--accent);
         }
         
         .guide-title {
             color: var(--primary-dark);
-            margin-bottom: 15px;
+            margin-bottom: 12px; /* تقليل المسافة */
             display: flex;
             align-items: center;
+            font-size: 1.2rem; /* تعديل الحجم */
         }
         
         .guide-title i {
-            margin-left: 10px;
+            margin-left: 8px; /* تقليل المسافة */
         }
         
         .guide-content {
             background-color: var(--white);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 15px; /* تقليل المسافة */
+            border-radius: 8px; /* تقليل التدوير */
             font-family: monospace;
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* تعديل الحجم */
             overflow-x: auto;
         }
 
@@ -1289,25 +1214,53 @@
             }
             
             .brand-name {
-                font-size: 1.2rem;
+                font-size: 1.1rem; /* تعديل الحجم */
             }
             
             .cart-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.1rem;
+                width: 38px; /* تصغير الحجم */
+                height: 38px;
+                font-size: 1rem; /* تعديل الحجم */
             }
             
             .search-toggle {
-                width: 40px;
-                height: 40px;
-                font-size: 1.1rem;
+                width: 38px; /* تصغير الحجم */
+                height: 38px;
+                font-size: 1rem; /* تعديل الحجم */
+            }
+
+            /* تحسينات للشريحة الرئيسية على الجوال */
+            .hero-slider {
+                padding: 110px 0; /* تعديل المسافة */
+            }
+            
+            .hero-title {
+                font-size: 2rem; /* تعديل الحجم */
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem; /* تعديل الحجم */
+            }
+            
+            .btn {
+                padding: 10px 20px; /* تعديل الحجم */
+                font-size: 0.9rem; /* تعديل الحجم */
+            }
+
+            /* تحسينات للفوتر على الجوال */
+            footer {
+                padding: 30px 0 20px; /* تقليل المسافة */
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px; /* تقليل المسافة */
             }
         }
 
         /* فلاتر البحث والتصنيف */
         .products-section {
-            margin-bottom: 40px;
+            margin-bottom: 30px; /* تقليل المسافة */
         }
 
         .category-products {
@@ -1316,19 +1269,19 @@
 
         .category-products.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease; /* تقليل مدة التحريك */
         }
 
         .no-products {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 20px; /* تقليل المسافة */
             color: var(--gray);
-            font-size: 1.1rem;
+            font-size: 1rem; /* تعديل الحجم */
         }
 
         .no-products i {
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem; /* تعديل الحجم */
+            margin-bottom: 12px; /* تقليل المسافة */
             display: block;
             color: var(--light-gray);
         }
@@ -1336,50 +1289,51 @@
         /* تصميم جديد للعروض */
         .offers-section {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 50px 0;
-            border-radius: 30px;
-            margin: 40px 0;
+            padding: 40px 0; /* تقليل المسافة */
+            border-radius: 25px; /* تقليل التدوير */
+            margin: 30px 0; /* تقليل المسافة */
         }
         
         .offer-highlight {
             background: linear-gradient(135deg, var(--secondary) 0%, #ff8c5a 100%);
             color: white;
-            padding: 5px 15px;
+            padding: 4px 12px; /* تعديل الحجم */
             border-radius: 20px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* تعديل الحجم */
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 12px; /* تقليل المسافة */
         }
-        
-        .floating-whatsapp {
-            position: fixed;
-            bottom: 90px;
-            left: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 999;
-            transition: var(--transition);
-            animation: pulse 2s infinite;
+
+        /* تحسينات للعرض على الشاشات الصغيرة جداً */
+        @media (max-width: 360px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .brand-name {
+                font-size: 1rem; /* تعديل الحجم */
+            }
+            
+            .hero-title {
+                font-size: 1.8rem; /* تعديل الحجم */
+            }
+            
+            .nav-item {
+                font-size: 0.75rem; /* تعديل الحجم */
+            }
+            
+            .nav-item i {
+                font-size: 1.1rem; /* تعديل الحجم */
+            }
         }
-        
-        .floating-whatsapp:hover {
-            transform: scale(1.1);
-            background-color: #128C7E;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+
+        /* دعم أفضل للشاشات ذات الشقوق (notch) */
+        @supports(padding: max(0px)) {
+            .main-header, .mobile-nav {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
         }
     </style>
 </head>
@@ -1441,105 +1395,17 @@
 
     <!-- المحتوى الرئيسي -->
     <main id="home">
-        <!-- الشريحة الرئيسية - تصميم جديد -->
+        <!-- الشريحة الرئيسية - تصميم جديد ومحسن -->
         <section class="hero-slider">
+            <div class="hero-background"></div>
             <div class="container">
-                <div class="slide-content">
-                    <div class="slide-text">
-                        <h1>مرحباً بكم في مكتب المستقبل</h1>
-                        <p>مركز متكامل لشحن الرصيد، إكسسوارات الهواتف، خدمات الاستنساخ والتسجيل بأسعار تنافسية وجودة عالية</p>
-                        <div class="btn-group">
-                            <a href="#products" class="btn">تصفح المنتجات</a>
-                            <a href="#offers-section" class="btn btn-outline">تصفح العروض</a>
-                        </div>
-                    </div>
-                    <div class="slide-image">
-                        <img src="https://images.unsplash.com/photo-1600086827875-a996a5d2e7b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="إكسسوارات هواتف">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- قسم العروض المميزة -->
-        <section class="offers-section" id="offers-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">العروض المميزة</h2>
-                    <a href="#products" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
-                </div>
-                
-                <div class="products-grid">
-                    <!-- عرض 1 -->
-                    <div class="product-card">
-                        <span class="product-badge offer-badge">عرض مميز</span>
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="شاحن متنقل">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">شواحن متنقلة</div>
-                            <h3 class="product-title">شاحن متنقل 10000 مللي أمبير</h3>
-                            <div class="product-price">
-                                <div class="price">65,000 د.ع <span class="original-price">85,000 د.ع</span></div>
-                                <div class="add-to-cart" data-id="5" data-name="شاحن متنقل 10000 مللي أمبير" data-price="65000" data-image="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- عرض 2 -->
-                    <div class="product-card">
-                        <span class="product-badge offer-badge">عرض حصري</span>
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="سماعات أذن">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">سماعات</div>
-                            <h3 class="product-title">سماعات أذن لاسلكية</h3>
-                            <div class="product-price">
-                                <div class="price">55,000 د.ع <span class="original-price">75,000 د.ع</span></div>
-                                <div class="add-to-cart" data-id="6" data-name="سماعات أذن لاسلكية" data-price="55000" data-image="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- عرض 3 -->
-                    <div class="product-card">
-                        <span class="product-badge offer-badge">عرض خاص</span>
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="حافظة أجهزة">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">إكسسوارات</div>
-                            <h3 class="product-title">حافظة أجهزة متعددة الاستخدام</h3>
-                            <div class="product-price">
-                                <div class="price">45,000 د.ع <span class="original-price">60,000 د.ع</span></div>
-                                <div class="add-to-cart" data-id="7" data-name="حافظة أجهزة متعددة الاستخدام" data-price="45000" data-image="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- عرض 4 -->
-                    <div class="product-card">
-                        <span class="product-badge offer-badge">عرض محدود</span>
-                        <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="قلم ستايلس">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">إكسسوارات</div>
-                            <h3 class="product-title">قلم ستايلس للشاشات اللمسية</h3>
-                            <div class="product-price">
-                                <div class="price">30,000 د.ع <span class="original-price">40,000 د.ع</span></div>
-                                <div class="add-to-cart" data-id="8" data-name="قلم ستايلس للشاشات اللمسية" data-price="30000" data-image="https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                    <i class="fas fa-plus"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="hero-content">
+                    <h1 class="hero-title">مرحباً بكم في مكتب المستقبل</h1>
+                    <p class="hero-subtitle">مركز متكامل لشحن الرصيد، إكسسوارات الهواتف، خدمات الاستنساخ والتسجيل بأسعار تنافسية وجودة عالية</p>
+                    <div class="hero-buttons">
+                        <a href="#products" class="btn">تصفح المنتجات</a>
+                        <a href="#services" class="btn btn-outline">اكتشف الخدمات</a>
+                    </div>            
                 </div>
             </div>
         </section>
@@ -1548,7 +1414,7 @@
         <section id="products" class="section">
             <div class="section-header">
                 <h2 class="section-title">أحدث المنتجات</h2>
-                <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+                <a href="#all-products" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
             </div>
             
             <!-- فئات المنتجات -->
@@ -1804,6 +1670,89 @@
                 </div>
             </div>
         </section>
+
+        <!-- قسم العروض المميزة -->
+        <section class="offers-section" id="offers-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">العروض المميزة</h2>
+                </div>
+                
+                <div class="products-grid">
+                    <!-- عرض 1 -->
+                    <div class="product-card">
+                        <span class="product-badge offer-badge">عرض مميز</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="شاحن متنقل">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">شواحن متنقلة</div>
+                            <h3 class="product-title">شاحن متنقل 10000 مللي أمبير</h3>
+                            <div class="product-price">
+                                <div class="price">65,000 د.ع <span class="original-price">85,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="5" data-name="شاحن متنقل 10000 مللي أمبير" data-price="65000" data-image="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- عرض 2 -->
+                    <div class="product-card">
+                        <span class="product-badge offer-badge">عرض حصري</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="سماعات أذن">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">سماعات</div>
+                            <h3 class="product-title">سماعات أذن لاسلكية</h3>
+                            <div class="product-price">
+                                <div class="price">55,000 د.ع <span class="original-price">75,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="6" data-name="سماعات أذن لاسلكية" data-price="55000" data-image="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- عرض 3 -->
+                    <div class="product-card">
+                        <span class="product-badge offer-badge">عرض خاص</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="حافظة أجهزة">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">إكسسوارات</div>
+                            <h3 class="product-title">حافظة أجهزة متعددة الاستخدام</h3>
+                            <div class="product-price">
+                                <div class="price">45,000 د.ع <span class="original-price">60,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="7" data-name="حافظة أجهزة متعددة الاستخدام" data-price="45000" data-image="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- عرض 4 -->
+                    <div class="product-card">
+                        <span class="product-badge offer-badge">عرض محدود</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="قلم ستايلس">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">إكسسوارات</div>
+                            <h3 class="product-title">قلم ستايلس للشاشات اللمسية</h3>
+                            <div class="product-price">
+                                <div class="price">30,000 د.ع <span class="original-price">40,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="8" data-name="قلم ستايلس للشاشات اللمسية" data-price="30000" data-image="https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
         <!-- الخدمات -->
         <section id="services" class="section">
@@ -1898,11 +1847,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- زر واتساب عائم -->
-        <a href="https://wa.me/9647781456686" class="floating-whatsapp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
         
         <!-- الفوتر -->
         <footer id="contact">
@@ -1960,7 +1904,7 @@
         </footer>
     </main>
 
-    <!-- التنقل السفلي للجوال -->
+    <!-- التنقل السفلي للجوال - محسّن -->
     <nav class="mobile-nav">
         <a href="#home" class="nav-item active">
             <i class="fas fa-home"></i>
@@ -1970,13 +1914,13 @@
             <i class="fas fa-shopping-cart"></i>
             <span>المنتجات</span>
         </a>
-        <a href="#services" class="nav-item">
-            <i class="fas fa-concierge-bell"></i>
-            <span>الخدمات</span>
-        </a>
         <a href="#offers-section" class="nav-item">
             <i class="fas fa-tags"></i>
             <span>العروض</span>
+        </a> 
+        <a href="#services" class="nav-item">
+            <i class="fas fa-concierge-bell"></i>
+            <span>الخدمات</span>
         </a>
         <a href="#contact" class="nav-item">
             <i class="fas fa-user"></i>
@@ -2237,10 +2181,48 @@
             });
         });
 
+        // تحسين تجربة mobile-nav
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // إزالة النشاط من جميع الروابط
+                document.querySelectorAll('.mobile-nav a').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // إضافة النشاط للرابط الحالي
+                this.classList.add('active');
+            });
+        });
+
         // تحميل السلة من localStorage عند بدء التحميل
         document.addEventListener('DOMContentLoaded', function() {
             updateCart();
+            
+            // ضبط الارتفاع المناسب للجسم بناءً على ارتفاع mobile-nav
+            const mobileNavHeight = document.querySelector('.mobile-nav').offsetHeight;
+            document.body.style.paddingBottom = mobileNavHeight + 'px';
         });
+
+        // دعم أفضل للشاشات ذات الشقوق (notch)
+        function updateSafeArea() {
+            const safeTop = getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-top') || '0px';
+            const safeBottom = getComputedStyle(document.documentElement).getPropertyValue('--safe-area-inset-bottom') || '0px';
+            
+            document.documentElement.style.setProperty('--safe-top', safeTop);
+            document.documentElement.style.setProperty('--safe-bottom', safeBottom);
+            
+            // تحديث padding-bottom للجسم بناءً على safe area
+            const mobileNavHeight = document.querySelector('.mobile-nav').offsetHeight;
+            const safeBottomValue = parseFloat(safeBottom) || 0;
+            document.body.style.paddingBottom = `calc(${mobileNavHeight}px + ${safeBottom})`;
+        }
+
+        // تحديث safe area عند تغيير حجم النافذة أو اتجاهها
+        window.addEventListener('resize', updateSafeArea);
+        window.addEventListener('orientationchange', updateSafeArea);
+        
+        // التهيئة الأولية
+        updateSafeArea();
     </script>
 </body>
     </html>
