@@ -90,12 +90,14 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            flex-wrap: wrap;
         }
 
         .brand {
             display: flex;
             align-items: center;
             text-decoration: none;
+            flex-shrink: 0;
         }
 
         .brand-logo {
@@ -130,59 +132,67 @@
 
         .header-actions {
             display: flex;
-            gap: 10px;
             align-items: center;
+            gap: 15px;
         }
 
-        .search-box {
-            position: relative;
-            margin-left: 10px;
-        }
-
-        .search-input {
-            background: rgba(255,255,255,0.15);
-            border: none;
-            border-radius: 25px;
-            padding: 8px 15px;
-            padding-right: 35px;
-            color: var(--white);
-            font-size: 0.9rem;
-            width: 180px;
-            transition: var(--transition);
-        }
-
-        .search-input::placeholder {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .search-input:focus {
-            background: rgba(255,255,255,0.2);
-            outline: none;
-            width: 200px;
-        }
-
-        .search-btn {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
+        .search-toggle {
             background: none;
             border: none;
             color: var(--white);
+            font-size: 1.3rem;
             cursor: pointer;
-            font-size: 1rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
         }
 
-        @media (max-width: 480px) {
-            .search-input {
-                width: 120px;
-            }
-            .search-input:focus {
-                width: 140px;
-            }
-            .brand-name {
-                font-size: 1.2rem;
-            }
+        .search-toggle:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .search-container {
+            width: 100%;
+            display: none;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .search-container.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--dark);
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            background-color: var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .cart-icon {
@@ -228,7 +238,7 @@
             scroll-padding-top: 90px;
         }
 
-        /* الشريحة الرئيسية */
+        /* الشريحة الرئيسية - تصميم جديد */
         .hero-slider {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
@@ -277,14 +287,18 @@
         }
 
         .slide-text h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             line-height: 1.3;
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            background: linear-gradient(45deg, var(--white), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .slide-text p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 30px;
             opacity: 0.9;
             font-weight: 300;
@@ -292,7 +306,7 @@
 
         @media (max-width: 480px) {
             .slide-text h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 margin-bottom: 15px;
             }
 
@@ -308,7 +322,7 @@
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 35px;
             background: linear-gradient(135deg, var(--secondary) 0%, #ff8c5a 100%);
             color: var(--white);
             text-decoration: none;
@@ -356,7 +370,7 @@
         }
 
         .slide-image {
-            max-width: 350px;
+            max-width: 400px;
             margin: 0 auto;
             position: relative;
             animation: float 4s ease-in-out infinite;
@@ -372,6 +386,12 @@
             width: 100%;
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: transform 0.5s ease;
+        }
+
+        .slide-image img:hover {
+            transform: perspective(1000px) rotateY(0deg);
         }
 
         /* أقسام الموقع */
@@ -389,7 +409,7 @@
         }
 
         .section-title {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--dark);
             position: relative;
             padding-bottom: 12px;
@@ -434,47 +454,46 @@
             transform: translateX(-5px);
         }
 
-        /* المنتجات */
-        .product-categories {
+        /* فئات المنتجات */
+        .categories-tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding: 0 10px;
             overflow-x: auto;
+            gap: 10px;
+            padding: 15px 10px;
+            margin-bottom: 20px;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            scroll-behavior: smooth;
-            padding-bottom: 5px;
         }
 
-        .product-categories::-webkit-scrollbar {
+        .categories-tabs::-webkit-scrollbar {
             display: none;
         }
 
-        .category-btn {
-            background: var(--white);
-            border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 0.9rem;
+        .category-tab {
+            flex: 0 0 auto;
+            padding: 10px 20px;
+            background-color: var(--white);
+            border-radius: 30px;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
-            white-space: nowrap;
             box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            white-space: nowrap;
         }
 
-        .category-btn.active {
-            background: var(--primary);
+        .category-tab.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
+            border-color: var(--primary);
         }
 
-        .category-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        .category-tab:hover:not(.active) {
+            border-color: var(--primary);
+            transform: translateY(-3px);
         }
 
+        /* المنتجات */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -516,6 +535,10 @@
             font-weight: 700;
             z-index: 2;
             box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
+
+        .offer-badge {
+            background: linear-gradient(135deg, #ff3366 0%, #ff4d4d 100%);
         }
 
         .product-image {
@@ -1176,12 +1199,12 @@
             }
             
             .slide-text h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             
             .slide-image {
                 flex: 1;
-                max-width: 400px;
+                max-width: 450px;
             }
             
             .products-grid {
@@ -1199,7 +1222,7 @@
 
         @media (min-width: 992px) {
             .slide-text h1 {
-                font-size: 2.8rem;
+                font-size: 3.2rem;
             }
             
             .products-grid {
@@ -1244,6 +1267,120 @@
             font-size: 0.9rem;
             overflow-x: auto;
         }
+
+        /* تحسينات الهيدر للجوال */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .brand {
+                order: 1;
+                flex: 1;
+            }
+            
+            .header-actions {
+                order: 2;
+            }
+            
+            .search-container {
+                order: 3;
+                width: 100%;
+            }
+            
+            .brand-name {
+                font-size: 1.2rem;
+            }
+            
+            .cart-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .search-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* فلاتر البحث والتصنيف */
+        .products-section {
+            margin-bottom: 40px;
+        }
+
+        .category-products {
+            display: none;
+        }
+
+        .category-products.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .no-products {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .no-products i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+            color: var(--light-gray);
+        }
+        
+        /* تصميم جديد للعروض */
+        .offers-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 50px 0;
+            border-radius: 30px;
+            margin: 40px 0;
+        }
+        
+        .offer-highlight {
+            background: linear-gradient(135deg, var(--secondary) 0%, #ff8c5a 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+        
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            background-color: #128C7E;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
     </style>
 </head>
 <body>
@@ -1257,9 +1394,19 @@
                 <div class="brand-name">مكتب <span>المستقبل</span></div>
             </a>
             
-            <div class="cart-icon" id="cartIcon">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
+            <div class="header-actions">
+                <button class="search-toggle" id="searchToggle">
+                    <i class="fas fa-search"></i>
+                </button>
+                
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+            
+            <div class="search-container" id="searchContainer">
+                <input type="text" class="search-input" placeholder="ابحث عن منتج أو خدمة..." id="searchInput">
             </div>
         </div>
     </header>
@@ -1294,7 +1441,7 @@
 
     <!-- المحتوى الرئيسي -->
     <main id="home">
-        <!-- الشريحة الرئيسية -->
+        <!-- الشريحة الرئيسية - تصميم جديد -->
         <section class="hero-slider">
             <div class="container">
                 <div class="slide-content">
@@ -1302,12 +1449,96 @@
                         <h1>مرحباً بكم في مكتب المستقبل</h1>
                         <p>مركز متكامل لشحن الرصيد، إكسسوارات الهواتف، خدمات الاستنساخ والتسجيل بأسعار تنافسية وجودة عالية</p>
                         <div class="btn-group">
-                            <a href="#products" class="btn btn-outline">تصفح المنتجات</a>
-                            <a href="#offers" class="btn">تصفح العروض</a>
+                            <a href="#products" class="btn">تصفح المنتجات</a>
+                            <a href="#offers-section" class="btn btn-outline">تصفح العروض</a>
                         </div>
                     </div>
                     <div class="slide-image">
                         <img src="https://images.unsplash.com/photo-1600086827875-a996a5d2e7b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="إكسسوارات هواتف">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم العروض المميزة -->
+        <section class="offers-section" id="offers-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">العروض المميزة</h2>
+                    <a href="#products" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+                </div>
+                
+                <div class="products-grid">
+                    <!-- عرض 1 -->
+                    <div class="product-card">
+                        <span class="product-badge offer-badge">عرض مميز</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="شاحن متنقل">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">شواحن متنقلة</div>
+                            <h3 class="product-title">شاحن متنقل 10000 مللي أمبير</h3>
+                            <div class="product-price">
+                                <div class="price">65,000 د.ع <span class="original-price">85,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="5" data-name="شاحن متنقل 10000 مللي أمبير" data-price="65000" data-image="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- عرض 2 -->
+                    <div class="product-card">
+                        <span class="product-badge offer-badge">عرض حصري</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="سماعات أذن">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">سماعات</div>
+                            <h3 class="product-title">سماعات أذن لاسلكية</h3>
+                            <div class="product-price">
+                                <div class="price">55,000 د.ع <span class="original-price">75,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="6" data-name="سماعات أذن لاسلكية" data-price="55000" data-image="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- عرض 3 -->
+                    <div class="product-card">
+                        <span class="product-badge offer-badge">عرض خاص</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="حافظة أجهزة">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">إكسسوارات</div>
+                            <h3 class="product-title">حافظة أجهزة متعددة الاستخدام</h3>
+                            <div class="product-price">
+                                <div class="price">45,000 د.ع <span class="original-price">60,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="7" data-name="حافظة أجهزة متعددة الاستخدام" data-price="45000" data-image="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- عرض 4 -->
+                    <div class="product-card">
+                        <span class="product-badge offer-badge">عرض محدود</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="قلم ستايلس">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">إكسسوارات</div>
+                            <h3 class="product-title">قلم ستايلس للشاشات اللمسية</h3>
+                            <div class="product-price">
+                                <div class="price">30,000 د.ع <span class="original-price">40,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="8" data-name="قلم ستايلس للشاشات اللمسية" data-price="30000" data-image="https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1320,72 +1551,253 @@
                 <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
             </div>
             
-            <div class="products-grid">
-                <!-- المنتج 1 -->
-                <div class="product-card">
-                    <span class="product-badge">جديد</span>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1603349206295-dde20617cb6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="غطاء آيفون">
+            <!-- فئات المنتجات -->
+            <div class="categories-tabs">
+                <div class="category-tab active" data-category="all">الكل</div>
+                <div class="category-tab" data-category="chargers">الشواحن</div>
+                <div class="category-tab" data-category="headphones">السماعات</div>
+                <div class="category-tab" data-category="cables">الكابلات</div>
+                <div class="category-tab" data-category="covers">الأغلفة</div>
+                <div class="category-tab" data-category="tablets">الأجهزة اللوحية</div>
+            </div>
+            
+            <!-- جميع المنتجات -->
+            <div class="category-products active" id="all-products">
+                <div class="products-grid">
+                    <!-- المنتج 1 -->
+                    <div class="product-card" data-category="covers">
+                        <span class="product-badge">جديد</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1603349206295-dde20617cb6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="غطاء آيفون">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">أغلفة هواتف</div>
+                            <h3 class="product-title">غطاء آيفون شفاف - خفيف</h3>
+                            <div class="product-price">
+                                <div class="price">25,000 د.ع</div>
+                                <div class="add-to-cart" data-id="1" data-name="غطاء آيفون شفاف" data-price="25000" data-image="https://images.unsplash.com/photo-1603349206295-dde20617cb6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <div class="product-category">أغلفة هواتف</div>
-                        <h3 class="product-title">غطاء آيفون شفاف - خفيف</h3>
-                        <div class="product-price">
-                            <div class="price">25,000 د.ع</div>
-                            <div class="add-to-cart" data-id="1" data-name="غطاء آيفون شفاف" data-price="25000" data-image="https://images.unsplash.com/photo-1603349206295-dde20617cb6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
+                    
+                    <!-- المنتج 2 -->
+                    <div class="product-card" data-category="headphones">
+                        <span class="product-badge">عرض</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="سماعات بلوتوث">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">سماعات</div>
+                            <h3 class="product-title">سماعات بلوتوث لاسلكية</h3>
+                            <div class="product-price">
+                                <div class="price">89,000 د.ع <span class="original-price">120,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="2" data-name="سماعات بلوتوث لاسلكية" data-price="89000" data-image="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- المنتج 3 -->
+                    <div class="product-card" data-category="chargers">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1606220588910-1de3b1f5049c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="شاحن سريع">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">شواحن</div>
+                            <h3 class="product-title">شاحن سريع 30 واط</h3>
+                            <div class="product-price">
+                                <div class="price">45,000 د.ع</div>
+                                <div class="add-to-cart" data-id="3" data-name="شاحن سريع 30 واط" data-price="45000" data-image="https://images.unsplash.com/photo-1606220588910-1de3b1f5049c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- المنتج 4 -->
+                    <div class="product-card" data-category="accessories">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="حامل سيارة">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">إكسسوارات</div>
+                            <h3 class="product-title">حامل سيارة مغناطيسي</h3>
+                            <div class="product-price">
+                                <div class="price">35,000 د.ع</div>
+                                <div class="add-to-cart" data-id="4" data-name="حامل سيارة مغناطيسي" data-price="35000" data-image="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- المنتج 5 (كابلات) -->
+                    <div class="product-card" data-category="cables">
+                        <span class="product-badge">جديد</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1583863788437-2a5a5d26a834?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="كابل شحن">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">كابلات</div>
+                            <h3 class="product-title">كابل شحن سريع Type-C</h3>
+                            <div class="product-price">
+                                <div class="price">15,000 د.ع</div>
+                                <div class="add-to-cart" data-id="13" data-name="كابل شحن سريع Type-C" data-price="15000" data-image="https://images.unsplash.com/photo-1583863788437-2a5a5d26a834?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- المنتج 6 (أجهزة لوحية) -->
+                    <div class="product-card" data-category="tablets">
+                        <span class="product-badge">جديد</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="تابلت سامسونج">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">أجهزة لوحية</div>
+                            <h3 class="product-title">تابلت سامسونج جالاكسي A8</h3>
+                            <div class="product-price">
+                                <div class="price">650,000 د.ع</div>
+                                <div class="add-to-cart" data-id="9" data-name="تابلت سامسونج جالاكسي A8" data-price="650000" data-image="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- المنتج 2 -->
-                <div class="product-card">
-                    <span class="product-badge">عرض</span>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="سماعات بلوتوث">
+            </div>
+            
+            <!-- منتجات الشواحن -->
+            <div class="category-products" id="chargers-products">
+                <div class="products-grid">
+                    <!-- شاحن 1 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1606220588910-1de3b1f5049c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="شاحن سريع">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">شواحن</div>
+                            <h3 class="product-title">شاحن سريع 30 واط</h3>
+                            <div class="product-price">
+                                <div class="price">45,000 د.ع</div>
+                                <div class="add-to-cart" data-id="3" data-name="شاحن سريع 30 واط" data-price="45000" data-image="https://images.unsplash.com/photo-1606220588910-1de3b1f5049c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <div class="product-category">سماعات</div>
-                        <h3 class="product-title">سماعات بلوتوث لاسلكية</h3>
-                        <div class="product-price">
-                            <div class="price">89,000 د.ع <span class="original-price">120,000 د.ع</span></div>
-                            <div class="add-to-cart" data-id="2" data-name="سماعات بلوتوث لاسلكية" data-price="89000" data-image="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
+                    
+                    <!-- شاحن 2 -->
+                    <div class="product-card">
+                        <span class="product-badge">عرض</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1606220588910-1de3b1f5049c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="شاحن سريع">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">شواحن</div>
+                            <h3 class="product-title">شاحن سريع 65 واط</h3>
+                            <div class="product-price">
+                                <div class="price">75,000 د.ع <span class="original-price">95,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="11" data-name="شاحن سريع 65 واط" data-price="75000" data-image="https://images.unsplash.com/photo-1606220588910-1de3b1f5049c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- المنتج 3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1606220588910-1de3b1f5049c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="شاحن سريع">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">شواحن</div>
-                        <h3 class="product-title">شاحن سريع 30 واط</h3>
-                        <div class="product-price">
-                            <div class="price">45,000 د.ع</div>
-                            <div class="add-to-cart" data-id="3" data-name="شاحن سريع 30 واط" data-price="45000" data-image="https://images.unsplash.com/photo-1606220588910-1de3b1f5049c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
+            </div>
+            
+            <!-- منتجات السماعات -->
+            <div class="category-products" id="headphones-products">
+                <div class="products-grid">
+                    <!-- سماعة 1 -->
+                    <div class="product-card">
+                        <span class="product-badge">عرض</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="سماعات بلوتوث">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">سماعات</div>
+                            <h3 class="product-title">سماعات بلوتوث لاسلكية</h3>
+                            <div class="product-price">
+                                <div class="price">89,000 د.ع <span class="original-price">120,000 د.ع</span></div>
+                                <div class="add-to-cart" data-id="2" data-name="سماعات بلوتوث لاسلكية" data-price="89000" data-image="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- المنتج 4 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="حامل سيارة">
+            </div>
+            
+            <!-- منتجات الكابلات -->
+            <div class="category-products" id="cables-products">
+                <div class="products-grid">
+                    <!-- كابل 1 -->
+                    <div class="product-card">
+                        <span class="product-badge">جديد</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1583863788437-2a5a5d26a834?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="كابل شحن">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">كابلات</div>
+                            <h3 class="product-title">كابل شحن سريع Type-C</h3>
+                            <div class="product-price">
+                                <div class="price">15,000 د.ع</div>
+                                <div class="add-to-cart" data-id="13" data-name="كابل شحن سريع Type-C" data-price="15000" data-image="https://images.unsplash.com/photo-1583863788437-2a5a5d26a834?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <div class="product-category">إكسسوارات</div>
-                        <h3 class="product-title">حامل سيارة مغناطيسي</h3>
-                        <div class="product-price">
-                            <div class="price">35,000 د.ع</div>
-                            <div class="add-to-cart" data-id="4" data-name="حامل سيارة مغناطيسي" data-price="35000" data-image="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
+                </div>
+            </div>
+            
+            <!-- منتجات الأغلفة -->
+            <div class="category-products" id="covers-products">
+                <div class="products-grid">
+                    <!-- غلاف 1 -->
+                    <div class="product-card">
+                        <span class="product-badge">جديد</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1603349206295-dde20617cb6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="غطاء آيفون">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">أغلفة هواتف</div>
+                            <h3 class="product-title">غطاء آيفون شفاف - خفيف</h3>
+                            <div class="product-price">
+                                <div class="price">25,000 د.ع</div>
+                                <div class="add-to-cart" data-id="1" data-name="غطاء آيفون شفاف" data-price="25000" data-image="https://images.unsplash.com/photo-1603349206295-dde20617cb6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- منتجات الأجهزة اللوحية -->
+            <div class="category-products" id="tablets-products">
+                <div class="products-grid">
+                    <!-- تابلت 1 -->
+                    <div class="product-card">
+                        <span class="product-badge">جديد</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="تابلت سامسونج">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">أجهزة لوحية</div>
+                            <h3 class="product-title">تابلت سامسونج جالاكسي A8</h3>
+                            <div class="product-price">
+                                <div class="price">650,000 د.ع</div>
+                                <div class="add-to-cart" data-id="9" data-name="تابلت سامسونج جالاكسي A8" data-price="650000" data-image="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
+                                    <i class="fas fa-plus"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1486,179 +1898,11 @@
                 </div>
             </div>
         </div>
-        
-        <!-- قسم العروض -->
-        <section id="offers" class="section">
-            <div class="section-header">
-                <h2 class="section-title">العروض المميزة</h2>
-                <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
-            </div>
-            
-            <div class="products-grid">
-                <!-- عرض 1 -->
-                <div class="product-card">
-                    <span class="product-badge">عرض مميز</span>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="شاحن متنقل">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">شواحن متنقلة</div>
-                        <h3 class="product-title">شاحن متنقل 10000 مللي أمبير</h3>
-                        <div class="product-price">
-                            <div class="price">65,000 د.ع <span class="original-price">85,000 د.ع</span></div>
-                            <div class="add-to-cart" data-id="5" data-name="شاحن متنقل 10000 مللي أمبير" data-price="65000" data-image="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- عرض 2 -->
-                <div class="product-card">
-                    <span class="product-badge">عرض حصري</span>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="سماعات أذن">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">سماعات</div>
-                        <h3 class="product-title">سماعات أذن لاسلكية</h3>
-                        <div class="product-price">
-                            <div class="price">55,000 د.ع <span class="original-price">75,000 د.ع</span></div>
-                            <div class="add-to-cart" data-id="6" data-name="سماعات أذن لاسلكية" data-price="55000" data-image="https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- عرض 3 -->
-                <div class="product-card">
-                    <span class="product-badge">عرض خاص</span>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="حافظة أجهزة">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">إكسسوارات</div>
-                        <h3 class="product-title">حافظة أجهزة متعددة الاستخدام</h3>
-                        <div class="product-price">
-                            <div class="price">45,000 د.ع <span class="original-price">60,000 د.ع</span></div>
-                            <div class="add-to-cart" data-id="7" data-name="حافظة أجهزة متعددة الاستخدام" data-price="45000" data-image="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- عرض 4 -->
-                <div class="product-card">
-                    <span class="product-badge">عرض محدود</span>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="قلم ستايلس">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">إكسسوارات</div>
-                        <h3 class="product-title">قلم ستايلس للشاشات اللمسية</h3>
-                        <div class="product-price">
-                            <div class="price">30,000 د.ع <span class="original-price">40,000 د.ع</span></div>
-                            <div class="add-to-cart" data-id="8" data-name="قلم ستايلس للشاشات اللمسية" data-price="30000" data-image="https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- قسم جديد: الأجهزة اللوحية -->
-        <section id="tablets" class="section">
-            <div class="section-header">
-                <h2 class="section-title">الأجهزة اللوحية</h2>
-                <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
-            </div>
-            
-            <div class="products-grid">
-                <!-- منتج 1 -->
-                <div class="product-card">
-                    <span class="product-badge">جديد</span>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="تابلت سامسونج">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">أجهزة لوحية</div>
-                        <h3 class="product-title">تابلت سامسونج جالاكسي A8</h3>
-                        <div class="product-price">
-                            <div class="price">650,000 د.ع</div>
-                            <div class="add-to-cart" data-id="9" data-name="تابلت سامسونج جالاكسي A8" data-price="650000" data-image="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- منتج 2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="تابلت هواوي">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">أجهزة لوحية</div>
-                        <h3 class="product-title">تابلت هواوي ميت باد T10</h3>
-                        <div class="product-price">
-                            <div class="price">550,000 د.ع</div>
-                            <div class="add-to-cart" data-id="10" data-name="تابلت هواوي ميت باد T10" data-price="550000" data-image="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- قسم جديد: الشواحن والبطاريات -->
-        <section id="chargers" class="section">
-            <div class="section-header">
-                <h2 class="section-title">الشواحن والبطاريات</h2>
-                <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
-            </div>
-            
-            <div class="products-grid">
-                <!-- منتج 1 -->
-                <div class="product-card">
-                    <span class="product-badge">عرض</span>
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1606220588910-1de3b1f5049c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="شاحن سريع">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">شواحن</div>
-                        <h3 class="product-title">شاحن سريع 65 واط</h3>
-                        <div class="product-price">
-                            <div class="price">75,000 د.ع <span class="original-price">95,000 د.ع</span></div>
-                            <div class="add-to-cart" data-id="11" data-name="شاحن سريع 65 واط" data-price="75000" data-image="https://images.unsplash.com/photo-1606220588910-1de3b1f5049c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- منتج 2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1605244863941-ee76e6e0ba45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="بطارية احتياطية">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">بطاريات</div>
-                        <h3 class="product-title">بطارية احتياطية 20000 مللي أمبير</h3>
-                        <div class="product-price">
-                            <div class="price">85,000 د.ع</div>
-                            <div class="add-to-cart" data-id="12" data-name="بطارية احتياطية 20000 مللي أمبير" data-price="85000" data-image="https://images.unsplash.com/photo-1605244863941-ee76e6e0ba45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80">
-                                <i class="fas fa-plus"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
+        <!-- زر واتساب عائم -->
+        <a href="https://wa.me/9647781456686" class="floating-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
         
         <!-- الفوتر -->
         <footer id="contact">
@@ -1681,7 +1925,7 @@
                             <li><a href="#home"><i class="fas fa-chevron-left"></i> الصفحة الرئيسية</a></li>
                             <li><a href="#products"><i class="fas fa-chevron-left"></i> المنتجات</a></li>
                             <li><a href="#services"><i class="fas fa-chevron-left"></i> الخدمات</a></li>
-                            <li><a href="#offers"><i class="fas fa-chevron-left"></i> العروض</a></li>
+                            <li><a href="#offers-section"><i class="fas fa-chevron-left"></i> العروض</a></li>
                             <li><a href="#contact"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
                         </ul>
                     </div>
@@ -1730,7 +1974,7 @@
             <i class="fas fa-concierge-bell"></i>
             <span>الخدمات</span>
         </a>
-        <a href="#offers" class="nav-item">
+        <a href="#offers-section" class="nav-item">
             <i class="fas fa-tags"></i>
             <span>العروض</span>
         </a>
@@ -1742,7 +1986,7 @@
 
     <script>
         // بيانات السلة
-        let cart = [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const cartIcon = document.getElementById('cartIcon');
         const cartSidebar = document.getElementById('cartSidebar');
         const closeCart = document.getElementById('closeCart');
@@ -1751,7 +1995,10 @@
         const cartTotalPrice = document.querySelector('.cart-total-price');
         const checkoutBtn = document.getElementById('checkoutBtn');
         const whatsappNumber = "9647781456686";
-
+        const searchToggle = document.getElementById('searchToggle');
+        const searchContainer = document.getElementById('searchContainer');
+        const searchInput = document.getElementById('searchInput');
+        
         // فتح وإغلاق سلة التسوق
         cartIcon.addEventListener('click', () => {
             cartSidebar.classList.add('active');
@@ -1759,6 +2006,14 @@
 
         closeCart.addEventListener('click', () => {
             cartSidebar.classList.remove('active');
+        });
+
+        // فتح وإغلاق البحث
+        searchToggle.addEventListener('click', () => {
+            searchContainer.classList.toggle('active');
+            if (searchContainer.classList.contains('active')) {
+                searchInput.focus();
+            }
         });
 
         // إضافة منتج إلى السلة
@@ -1785,6 +2040,7 @@
                 }
                 
                 updateCart();
+                saveCartToLocalStorage();
                 
                 // عرض رسالة نجاح
                 const notification = document.createElement('div');
@@ -1865,6 +2121,12 @@
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
             updateCart();
+            saveCartToLocalStorage();
+        }
+
+        // حفظ السلة في localStorage
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
         }
 
         // إرسال الطلب عبر واتساب
@@ -1928,11 +2190,57 @@
             });
         });
 
-        // إضافة خدمة شحن الرصيد بشكل افتراضي عند التحميل
+        // فلترة المنتجات حسب الفئة
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // تحديث التبويب النشط
+                document.querySelectorAll('.category-tab').forEach(t => {
+                    t.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // إخفاء جميع أقسام المنتجات
+                document.querySelectorAll('.category-products').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // إظهار القسم المطلوب
+                document.getElementById(`${category}-products`).classList.add('active');
+            });
+        });
+
+        // وظيفة البحث
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            const allProducts = document.querySelectorAll('.product-card');
+            
+            if (searchTerm === '') {
+                // إظهار جميع المنتجات عند عدم وجود بحث
+                allProducts.forEach(product => {
+                    product.style.display = 'block';
+                });
+                return;
+            }
+            
+            // البحث في المنتجات
+            allProducts.forEach(product => {
+                const title = product.querySelector('.product-title').textContent.toLowerCase();
+                const category = product.querySelector('.product-category').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || category.includes(searchTerm)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        });
+
+        // تحميل السلة من localStorage عند بدء التحميل
         document.addEventListener('DOMContentLoaded', function() {
             updateCart();
         });
     </script>
 </body>
-
-</html>
+    </html>
