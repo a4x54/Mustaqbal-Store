@@ -1811,4 +1811,53 @@ footer::before {
     .company-tabs, .games-categories {
         justify-content: flex-start;
     }
+
+}
+
+
+/* زر إضافة إلى الشاشة الرئيسية */
+.install-btn {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  display: none;
+  animation: slideUp 0.5s ease;
+  font-family: 'Cairo', sans-serif;
+}
+
+.install-btn:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* أنماط إضافية لتجربة تطبيق الويب */
+@media (display-mode: standalone) {
+  body {
+    padding-top: 0;
+  }
+  
+  .main-header {
+    padding-top: env(safe-area-inset-top);
+  }
 }
