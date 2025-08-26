@@ -550,9 +550,52 @@ function updateSafeArea() {
     document.body.style.paddingBottom = `calc(${mobileNavHeight}px + ${safeBottom})`;
 }
 
+// اكتشاف متى يمكن إضافة التطبيق إلى الشاشة الرئيسية
+let deferredPrompt;
+const addBtn = document.createElement('button');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // منع متصفحات Chrome من إظهار الرسالة التلقائية
+  e.preventDefault();
+  // حفظ الحدث ليتم استخدامه لاحقًا
+  deferredPrompt = e;
+  // عرض زر إضافة التطبيق
+  showInstallPromotion();
+});
+
+// وظيفة لعرض رسالة التثبيت
+function showInstallPromotion() {
+  addBtn.style.display = 'block';
+  addBtn.textContent = 'إضافة إلى الشاشة الرئيسية';
+  addBtn.className = 'install-btn';
+  document.body.appendChild(addBtn);
+  
+  addBtn.addEventListener('click', (e) => {
+    // إخفاء الزر بعد النقر
+    addBtn.style.display = 'none';
+    // عرض رسالة التثبيت
+    deferredPrompt.prompt();
+    // الانتظار حتى يقرر المستخدم
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('تمت إضافة التطبيق إلى الشاشة الرئيسية');
+      } else {
+        console.log('رفض المستخدم إضافة التطبيق');
+      }
+      deferredPrompt = null;
+    });
+  });
+}
+
+// متابعة ما إذا كان التطبيق مثبتًا بالفعل
+window.addEventListener('appinstalled', (evt) => {
+  console.log('تم تثبيت التطبيق بنجاح');
+});
+
 // تحديث safe area عند تغيير حجم النافذة أو اتجاهها
 window.addEventListener('resize', updateSafeArea);
 window.addEventListener('orientationchange', updateSafeArea);
 
 // التهيئة الأولية
+
 updateSafeArea();
