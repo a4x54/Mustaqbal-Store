@@ -550,6 +550,193 @@ function updateSafeArea() {
     document.body.style.paddingBottom = `calc(${mobileNavHeight}px + ${safeBottom})`;
 }
 
+
+// إضافة دوال جديدة للتحسينات
+
+// شريط التقدم أثناء التمرير
+function updateProgressBar() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById("progressBar").style.width = scrolled + "%";
+}
+
+// زر العودة للأعلى
+function toggleScrollToTopButton() {
+    const scrollToTopBtn = document.getElementById("scrollToTop");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        scrollToTopBtn.style.display = "flex";
+    } else {
+        scrollToTopBtn.style.display = "none";
+    }
+}
+
+// قائمة الهاتف
+function setupMobileMenu() {
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    
+    menuToggle.addEventListener("click", function() {
+        mobileMenu.classList.toggle("active");
+        this.setAttribute("aria-expanded", mobileMenu.classList.contains("active"));
+    });
+    
+    // إغلاق القائمة عند النقر على عنصر
+    document.querySelectorAll(".mobile-menu-item").forEach(item => {
+        item.addEventListener("click", () => {
+            mobileMenu.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+        });
+    });
+}
+
+// الأسئلة الشائعة
+function setupFAQ() {
+    const faqItems = document.querySelectorAll(".faq-item");
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector(".faq-question");
+        
+        question.addEventListener("click", () => {
+            // إغلاق جميع العناصر الأخرى
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.querySelector(".faq-answer").classList.remove("active");
+                    otherItem.querySelector(".faq-question").classList.remove("active");
+                }
+            });
+            
+            // تبديل العنصر الحالي
+            const answer = item.querySelector(".faq-answer");
+            answer.classList.toggle("active");
+            question.classList.toggle("active");
+        });
+    });
+}
+
+// تحميل الصور بطريقة كسولة محسنة
+function setupLazyLoading() {
+    const lazyImages = document.querySelectorAll("img[data-src]");
+    
+    if ("IntersectionObserver" in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add("loaded");
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        lazyImages.forEach(img => {
+            imageObserver.observe(img);
+        });
+    } else {
+        // Fallback للمتصفحات التي لا تدعم IntersectionObserver
+        lazyImages.forEach(img => {
+            img.src = img.dataset.src;
+        });
+    }
+}
+
+// إشعار الإضافة للسلة
+function showCartNotification(message) {
+    const notification = document.getElementById("cart-notification");
+    const notificationText = document.getElementById("notification-text");
+    
+    notificationText.textContent = message;
+    notification.classList.add("show");
+    
+    setTimeout(() => {
+        notification.classList.remove("show");
+    }, 3000);
+}
+
+// تحسين إضافة المنتج للسلة
+function addToCart(button) {
+    const id = button.getAttribute('data-id');
+    const name = button.getAttribute('data-name');
+    const price = parseFloat(button.getAttribute('data-price'));
+    const image = button.getAttribute('data-image');
+    
+    const existingItem = cart.find(item => item.id === id);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            id,
+            name,
+            price,
+            image,
+            quantity: 1
+        });
+    }
+    
+    updateCart();
+    saveCartToLocalStorage();
+    
+    // عرض إشعار الإضافة
+    showCartNotification(`تم إضافة "${name}" إلى السلة`);
+}
+
+// تهيئة جميع الميزات الجديدة
+function initEnhancements() {
+    // إعداد شريط التقدم
+    window.onscroll = function() {
+        updateProgressBar();
+        toggleScrollToTopButton();
+    };
+    
+    // زر العودة للأعلى
+    document.getElementById("scrollToTop").addEventListener("click", function() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+    
+    // إعداد قائمة الهاتف
+    setupMobileMenu();
+    
+    // إعداد الأسئلة الشائعة
+    setupFAQ();
+    
+    // إعداد التحميل الكسول للصور
+    setupLazyLoading();
+    
+    // تحسينات إضافية للأداء
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+}
+
+// تحديث تهيئة الموقع لاستدعاء التحسينات الجديدة
+document.addEventListener('DOMContentLoaded', function() {
+    updateCart();
+    loadProducts();
+    loadOffers();
+    
+    // ضبط الارتفاع المناسب للجسم بناءً على ارتفاع mobile-nav
+    const mobileNavHeight = document.querySelector('.mobile-nav').offsetHeight;
+    document.body.style.paddingBottom = mobileNavHeight + 'px';
+    
+    // إضافة مستمعي الأحداث
+    setupEventListeners();
+    
+    // تهيئة التحسينات الجديدة
+    initEnhancements();
+});
+
+
 // تحديث safe area عند تغيير حجم النافذة أو اتجاهها
 window.addEventListener('resize', updateSafeArea);
 window.addEventListener('orientationchange', updateSafeArea);
@@ -557,4 +744,5 @@ window.addEventListener('orientationchange', updateSafeArea);
 // التهيئة الأولية
 
 updateSafeArea();
+
 
