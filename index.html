@@ -6,8 +6,38 @@
     <meta name="theme-color" content="#2c6fbb">
     <meta name="description" content="مكتب المستقبل - متجرك الأول للهواتف والإكسسوارات وخدمات الرصيد">
     <title>مكتب المستقبل - هواتف، رصيد، إكسسوارات</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- تحسين تحميل الخطوط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- تحسين تحميل Font Awesome -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- إضافة Structured Data لتحسين SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "مكتب المستقبل",
+      "description": "متجرك الأول للهواتف والإكسسوارات وخدمات الرصيد",
+      "url": "https://example.com",
+      "telephone": "+9647781456686",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "العراق - نينوى - الموصل - حي السلام - قرب مدخل السلام",
+        "addressLocality": "الموصل",
+        "addressCountry": "IQ"
+      },
+      "openingHours": [
+        "Mo-Su 10:00-01:00"
+      ],
+      "priceRange": "$$"
+    }
+    </script>
+
     <link rel="stylesheet" href="styles.css">
 
     <!-- أيقونة الموقع الأساسية -->
@@ -26,6 +56,16 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
+    <!-- شريط التقدم أثناء التمرير -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- زر العودة للأعلى -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="العودة إلى الأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- الهيدر الرئيسي -->
     <header class="main-header">
         <div class="header-container">
@@ -37,27 +77,56 @@
             </a>
             
             <div class="header-actions">
-                <button class="search-toggle" id="searchToggle">
+                <button class="search-toggle" id="searchToggle" aria-label="بحث">
                     <i class="fas fa-search"></i>
                 </button>
                 
-                <div class="cart-icon" id="cartIcon">
+                <div class="cart-icon" id="cartIcon" aria-label="سلة التسوق">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </div>
+
+                <!-- قائمة الهاتف مع زر البرجر -->
+                <button class="menu-toggle" id="menuToggle" aria-label="القائمة">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
             
             <div class="search-container" id="searchContainer">
                 <input type="text" class="search-input" placeholder="ابحث عن منتج أو خدمة..." id="searchInput">
             </div>
         </div>
+
+        <!-- قائمة التنقل للهاتف -->
+        <nav class="mobile-menu" id="mobileMenu">
+            <a href="#home" class="mobile-menu-item">
+                <i class="fas fa-home"></i>
+                الرئيسية
+            </a>
+            <a href="#products" class="mobile-menu-item">
+                <i class="fas fa-shopping-cart"></i>
+                المنتجات
+            </a>
+            <a href="#offers-section" class="mobile-menu-item">
+                <i class="fas fa-tags"></i>
+                العروض
+            </a> 
+            <a href="#services" class="mobile-menu-item">
+                <i class="fas fa-concierge-bell"></i>
+                الخدمات
+            </a>
+            <a href="#contact" class="mobile-menu-item">
+                <i class="fas fa-user"></i>
+                اتصل بنا
+            </a>
+        </nav>
     </header>
 
     <!-- سلة التسوق -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <div class="cart-title">سلة التسوق</div>
-            <button class="close-cart" id="closeCart">
+            <button class="close-cart" id="closeCart" aria-label="إغلاق السلة">
                 <i class="fas fa-times"></i>
             </button>
         </div>
@@ -204,15 +273,15 @@
             <div class="tab-content active" id="mobile-tab">
                 <div class="company-tabs">
                     <div class="company-tab active" data-company="asia">
-                        <img src="images/asia-cell.png" alt="Asia Cell">
+                        <img src="images/asia-cell.png" alt="Asia Cell" loading="lazy">
                         <span>آسيا سيل</span>
                     </div>
                     <div class="company-tab" data-company="korek">
-                        <img src="images/korek.png" alt="Korek">
+                        <img src="images/korek.png" alt="Korek" loading="lazy">
                         <span>كورك</span>
                     </div>
                     <div class="company-tab" data-company="zain">
-                        <img src="images/zain.png" alt="Zain">
+                        <img src="images/zain.png" alt="Zain" loading="lazy">
                         <span>زين</span>
                     </div>
                 </div>
@@ -297,15 +366,15 @@
             <div class="tab-content" id="games-tab">
                 <div class="games-categories">
                     <div class="game-category active" data-category="pubg">
-                        <img src="images/pubg.jpg" alt="PUBG">
+                        <img src="images/pubg.jpg" alt="PUBG" loading="lazy">
                         <span>ببجي</span>
                     </div>
                     <div class="game-category" data-category="ludo">
-                        <img src="images/ludo.png" alt="Ludo">
+                        <img src="images/ludo.png" alt="Ludo" loading="lazy">
                         <span>لودو</span>
                     </div>
                     <div class="game-category" data-category="pes">
-                        <img src="images/pes.png" alt="PES">
+                        <img src="images/pes.png" alt="PES" loading="lazy">
                         <span>بيس</span>
                     </div>
                 </div>
@@ -356,6 +425,47 @@
                 <!-- باقي أقسام الألعاب سيتم إضافتها بنفس النمط -->
             </div>
         </div>
+        
+        <!-- قسم الأسئلة الشائعة الجديد -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">الأسئلة الشائعة</h2>
+                </div>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            كيف يمكنني طلب المنتجات؟
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>يمكنك اختيار المنتج واضافته إلى السلة، ثم الضغط على زر إرسال الطلب عبر واتساب وسيتم التواصل معك لتأكيد الطلب.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            ما هي مدة التوصيل؟
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>نقوم بالتوصيل خلال 24-48 ساعة داخل الموصل، ولمناطق أخرى يرجى التواصل معنا لمعرفة مدة التوصيل.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            هل يوجد ضمان على المنتجات؟
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>نعم، جميع منتجاتنا أصلية ومضمونة، وتختلف مدة الضمان حسب نوع المنتج.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
         <!-- الفوتر -->
         <footer id="contact">
@@ -447,8 +557,15 @@
         </div>
     </div>
 
+    <!-- نافذة تأكيد الإضافة للسلة -->
+    <div id="cart-notification" class="cart-notification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notification-text">تمت الإضافة إلى السلة</span>
+        </div>
+    </div>
+
     <script src="products-data.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>
