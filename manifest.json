@@ -2,7 +2,7 @@
   "name": "مكتب المستقبل",
   "short_name": "مكتب المستقبل",
   "description": "متجرك الأول للهواتف والإكسسوارات وخدمات الرصيد",
-  "start_url": "/",
+  "start_url": "/Mustaqbal-Store/",
   "display": "standalone",
   "background_color": "#2c6fbb",
   "theme_color": "#2c6fbb",
@@ -18,4 +18,5 @@
       "type": "image/png"
     }
   ]
+
 }
