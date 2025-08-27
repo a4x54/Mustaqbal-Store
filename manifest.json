@@ -1,0 +1,21 @@
+{
+  "name": "مكتب المستقبل",
+  "short_name": "مكتب المستقبل",
+  "description": "متجرك الأول للهواتف والإكسسوارات وخدمات الرصيد",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2c6fbb",
+  "theme_color": "#2c6fbb",
+  "icons": [
+    {
+      "src": "icons/android-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/android-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
