@@ -17,7 +17,8 @@ const productModal = document.getElementById('product-modal');
 const productDetails = document.getElementById('product-details');
 const closeModal = document.querySelector('.close-modal');
 
-// تهيئة الموقع
+
+// تحديث تهيئة الموقع لاستدعاء التحسينات الجديدة
 document.addEventListener('DOMContentLoaded', function() {
     updateCart();
     loadProducts();
@@ -29,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // إضافة مستمعي الأحداث
     setupEventListeners();
+    
+    // تهيئة التحسينات الجديدة
+    initEnhancements();
 });
 
 // تحميل المنتجات وعرضها
@@ -204,33 +208,6 @@ function setupEventListeners() {
     });
 }
 
-// إضافة منتج إلى السلة
-function addToCart(button) {
-    const id = button.getAttribute('data-id');
-    const name = button.getAttribute('data-name');
-    const price = parseFloat(button.getAttribute('data-price'));
-    const image = button.getAttribute('data-image');
-    
-    const existingItem = cart.find(item => item.id === id);
-    
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({
-            id,
-            name,
-            price,
-            image,
-            quantity: 1
-        });
-    }
-    
-    updateCart();
-    saveCartToLocalStorage();
-    
-    // عرض رسالة نجاح
-    showNotification(`تم إضافة "${name}" إلى السلة`);
-}
 
 // عرض تفاصيل المنتج
 function showProductDetails(productId) {
@@ -719,22 +696,7 @@ function initEnhancements() {
     }
 }
 
-// تحديث تهيئة الموقع لاستدعاء التحسينات الجديدة
-document.addEventListener('DOMContentLoaded', function() {
-    updateCart();
-    loadProducts();
-    loadOffers();
-    
-    // ضبط الارتفاع المناسب للجسم بناءً على ارتفاع mobile-nav
-    const mobileNavHeight = document.querySelector('.mobile-nav').offsetHeight;
-    document.body.style.paddingBottom = mobileNavHeight + 'px';
-    
-    // إضافة مستمعي الأحداث
-    setupEventListeners();
-    
-    // تهيئة التحسينات الجديدة
-    initEnhancements();
-});
+
 
 
 // تحديث safe area عند تغيير حجم النافذة أو اتجاهها
@@ -744,5 +706,4 @@ window.addEventListener('orientationchange', updateSafeArea);
 // التهيئة الأولية
 
 updateSafeArea();
-
 
